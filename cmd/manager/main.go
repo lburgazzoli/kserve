@@ -24,7 +24,7 @@ import (
 
 	monitoringv1 "github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"k8s.io/apimachinery/pkg/fields"
+	"k8s.io/apimachinery/pkg/labels"
 	"sigs.k8s.io/controller-runtime/pkg/cache"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
@@ -159,9 +159,7 @@ func main() {
 							LabelSelector: llmSvcCacheSelector,
 						},
 						llmisvc.ServiceCASigningSecretNamespace: {
-							FieldSelector: fields.SelectorFromSet(map[string]string{
-								"metadata.name": llmisvc.ServiceCASigningSecretName,
-							}),
+							LabelSelector: labels.Everything(),
 						},
 					},
 				},

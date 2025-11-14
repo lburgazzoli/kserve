@@ -98,12 +98,15 @@ func Reconcile[O client.Object, T client.Object](ctx context.Context, c clientWi
 	typeLogLine := logLineForObject(expected)
 
 	curr := empty.DeepCopyObject().(T)
+
 	if err := c.Get(ctx, client.ObjectKeyFromObject(expected), curr); err != nil {
 		if client.IgnoreNotFound(err) != nil {
 			return fmt.Errorf("failed to get %s %s/%s: %w", typeLogLine, expected.GetNamespace(), expected.GetName(), err)
 		}
+
 		return Create(ctx, c, owner, expected)
 	}
+
 	return Update(ctx, c, owner, curr, expected, isEqual)
 }
 

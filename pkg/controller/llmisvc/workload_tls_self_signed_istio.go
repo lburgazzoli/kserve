@@ -155,9 +155,9 @@ func (r *LLMInferenceServiceReconciler) expectedIstioDestinationRuleForScheduler
 		Spec: istionetworking.DestinationRule{
 			TrafficPolicy: &istionetworking.TrafficPolicy{
 				Tls: &istionetworking.ClientTLSSettings{
-					Mode:               istionetworking.ClientTLSSettings_SIMPLE,
-					CaCertificates:     "/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt",
-					InsecureSkipVerify: &pbwrappers.BoolValue{Value: false},
+					Mode: istionetworking.ClientTLSSettings_SIMPLE,
+					//CaCertificates:     "/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt",
+					InsecureSkipVerify: &pbwrappers.BoolValue{Value: true},
 				},
 			},
 			// Export to all namespaces, this is the default, however, we keep the configuration explicit.
@@ -209,9 +209,9 @@ func (r *LLMInferenceServiceReconciler) expectedIstioDestinationRuleForShadowSer
 		Spec: istionetworking.DestinationRule{
 			TrafficPolicy: &istionetworking.TrafficPolicy{
 				Tls: &istionetworking.ClientTLSSettings{
-					Mode:               istionetworking.ClientTLSSettings_SIMPLE,
-					CaCertificates:     "/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt",
-					InsecureSkipVerify: &pbwrappers.BoolValue{Value: false},
+					Mode: istionetworking.ClientTLSSettings_SIMPLE,
+					//CaCertificates:     "/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt",
+					InsecureSkipVerify: &pbwrappers.BoolValue{Value: true},
 				},
 			},
 			// Export to all namespaces, this is the default, however, we keep the configuration explicit.
@@ -248,9 +248,9 @@ func (r *LLMInferenceServiceReconciler) expectedIstioDestinationRuleForWorkload(
 			Host: network.GetServiceHostname(kmeta.ChildName(llmSvc.GetName(), "-kserve-workload-svc"), llmSvc.GetNamespace()),
 			TrafficPolicy: &istionetworking.TrafficPolicy{
 				Tls: &istionetworking.ClientTLSSettings{
-					Mode:               istionetworking.ClientTLSSettings_SIMPLE,
-					CaCertificates:     "/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt",
-					InsecureSkipVerify: &pbwrappers.BoolValue{Value: false},
+					Mode: istionetworking.ClientTLSSettings_SIMPLE,
+					//CaCertificates:     "/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt",
+					InsecureSkipVerify: &pbwrappers.BoolValue{Value: true},
 					Sni:                network.GetServiceHostname(kmeta.ChildName(llmSvc.GetName(), "-kserve-workload-svc"), llmSvc.GetNamespace()),
 				},
 			},

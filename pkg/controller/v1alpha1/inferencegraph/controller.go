@@ -33,8 +33,6 @@ import (
 
 	"github.com/go-logr/logr"
 
-	osv1 "github.com/openshift/api/route/v1"
-
 	"github.com/pkg/errors"
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
@@ -445,8 +443,8 @@ func (r *InferenceGraphReconciler) SetupWithManager(mgr ctrl.Manager, deployConf
 
 	ctrlBuilder := ctrl.NewControllerManagedBy(mgr).
 		For(&v1alpha1.InferenceGraph{}).
-		Owns(&appsv1.Deployment{}).
-		Owns(&osv1.Route{})
+		Owns(&appsv1.Deployment{})
+	//Owns(&osv1.Route{})
 
 	if ksvcFound {
 		ctrlBuilder = ctrlBuilder.Owns(&knservingv1.Service{})
