@@ -74,7 +74,9 @@ jobs:
 
           # A file change that can affect a Konflux image build. Anything
           # else (docs, tests that do not run inside images) skips the run.
-          relevant='(^\.tekton/)|(^\.github/workflows/konflux-build-simulation\.yml$)|(^\.github/actions/)|(Dockerfile)|(\.dockerignore$)|(\.go$)|((^|/)go\.(mod|sum)$)|(^python/)|(^kserve-module/)|(^hack/)'
+          # fault injection fi8b: the pre-fix regex matched .yaml while the
+          # workflow file is .yml, so a workflow-only diff skipped its own gate.
+          relevant='(^\.tekton/)|(^\.github/workflows/konflux-build-simulation\.yaml$)|(^\.github/actions/)|(Dockerfile)|(\.dockerignore$)|(\.go$)|((^|/)go\.(mod|sum)$)|(^python/)|(^kserve-module/)|(^hack/)'
 
           skip=false
           if [[ "${EVENT_NAME}" == "workflow_dispatch" || "${EVENT_NAME}" == "merge_group" ]]; then
