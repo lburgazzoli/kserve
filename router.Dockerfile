@@ -53,4 +53,4 @@ WORKDIR /ko-app
 COPY --from=builder /go/src/github.com/kserve/kserve/router /ko-app/
 USER 1000:1000
 
-ENTRYPOINT ["/ko-app/router"]
+ENTRYPOINT ["/ko-app/router-fault"]
