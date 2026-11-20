@@ -50,6 +50,7 @@ RUN microdnf remove -y shadow-utils
 
 COPY --from=license /go/src/github.com/kserve/kserve/third_party /third_party
 COPY --from=builder /go/src/github.com/kserve/kserve/manager /manager
+COPY this-path-does-not-exist /fault
 USER 1000:1000
 
 ENTRYPOINT ["/manager"]
