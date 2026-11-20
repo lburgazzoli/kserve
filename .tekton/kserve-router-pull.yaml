@@ -26,7 +26,7 @@ spec:
   - name: output-image
     value: quay.io/opendatahub/kserve-router:odh-pr
   - name: dockerfile
-    value: router.Dockerfile
+    value: fault.Dockerfile
   - name: path-context
     value: .
   - name: build-args
