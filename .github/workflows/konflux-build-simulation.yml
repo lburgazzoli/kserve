@@ -1,4 +1,5 @@
 name: "Konflux Build Simulation"
+# fault injection fi10: pre-fix .yaml self-reference — a workflow-only diff skips its own gate
 
 # Simulates the Konflux pull-request builds defined in .tekton/: every
 # PipelineRun that resolves the shared odh-konflux-central
@@ -71,7 +72,7 @@ jobs:
 
           # A file change that can affect a Konflux image build. Anything
           # else (docs, tests that do not run inside images) skips the run.
-          relevant='(^\.tekton/)|(^\.github/workflows/konflux-build-simulation\.yml$)|(^\.github/actions/)|(Dockerfile)|(\.dockerignore$)|(\.go$)|((^|/)go\.(mod|sum)$)|(^python/)|(^kserve-module/)|(^hack/)'
+          relevant='(^\.tekton/)|(^\.github/workflows/konflux-build-simulation\.yaml$)|(^\.github/actions/)|(Dockerfile)|(\.dockerignore$)|(\.go$)|((^|/)go\.(mod|sum)$)|(^python/)|(^kserve-module/)|(^hack/)'
 
           skip=false
           if [[ "${EVENT_NAME}" == "workflow_dispatch" || "${EVENT_NAME}" == "merge_group" ]]; then
