@@ -1,4 +1,5 @@
 name: "Konflux Build Simulation"
+# fault injection fi8b: workflow-only diff on the pre-fix regex
 
 # Simulates the Konflux pull-request builds defined in .tekton/: every
 # PipelineRun that resolves the shared odh-konflux-central
